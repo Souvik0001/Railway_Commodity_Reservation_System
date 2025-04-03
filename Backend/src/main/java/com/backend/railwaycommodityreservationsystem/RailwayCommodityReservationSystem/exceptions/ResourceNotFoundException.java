@@ -1,0 +1,10 @@
+package com.pedalup.hackathon.pedalupApp.exceptions;
+
+public class ResourceNotFoundException extends RuntimeException {
+    public ResourceNotFoundException() {
+    }
+
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
+}

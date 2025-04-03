@@ -5,20 +5,20 @@ import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservation
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.exceptions.ResourceNotFoundException;
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.exceptions.RuntimeConflictException;
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.repositories.TrainRepository;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.CycleService;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.RideRequestService;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.RideService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.TrainService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.JourneyRequestService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.JourneyService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CycleServiceImpl implements CycleService {
+public class TrainServiceImpl implements TrainService {
 
-    private final RideRequestService rideRequestService;
+    private final JourneyRequestService journeyRequestService;
     private final TrainRepository trainRepository;
-    private final RideService rideService;
+    private final JourneyService journeyService;
     private final ModelMapper modelMapper;
 
 

@@ -1,6 +1,6 @@
-package com.pedalup.hackathon.pedalupApp.entities;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities;
 
-import com.pedalup.hackathon.pedalupApp.entities.enums.PaymentStatus;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.enums.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -21,7 +21,7 @@ public class Payment {
 
 
     @OneToOne(fetch = FetchType.LAZY)
-    private Ride ride;
+    private Journey journey;
 
     private Double amount;
 

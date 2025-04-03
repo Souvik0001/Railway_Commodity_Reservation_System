@@ -1,6 +1,6 @@
-package com.pedalup.hackathon.pedalupApp.dto;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto;
 
-import com.pedalup.hackathon.pedalupApp.entities.enums.Role;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

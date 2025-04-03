@@ -1,7 +1,7 @@
 package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities;
 
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.enums.PaymentMethod;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.enums.RideRequestStatus;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.enums.JourneyRequestStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-public class RideRequest {
+public class JourneyRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,13 +28,13 @@ public class RideRequest {
     private LocalDateTime requestedTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Rider rider;
+    private Driver driver;
 
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
     @Enumerated(EnumType.STRING)
-    private RideRequestStatus rideRequestStatus;
+    private JourneyRequestStatus journeyRequestStatus;
 
     private Double fare;
 }

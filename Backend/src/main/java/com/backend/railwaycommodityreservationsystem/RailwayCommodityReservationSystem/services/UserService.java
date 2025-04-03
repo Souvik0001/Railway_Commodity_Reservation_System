@@ -1,8 +1,8 @@
-package com.pedalup.hackathon.pedalupApp.services;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services;
 
-import com.pedalup.hackathon.pedalupApp.entities.User;
-import com.pedalup.hackathon.pedalupApp.exceptions.ResourceNotFoundException;
-import com.pedalup.hackathon.pedalupApp.repositories.UserRepository;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.User;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.exceptions.ResourceNotFoundException;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

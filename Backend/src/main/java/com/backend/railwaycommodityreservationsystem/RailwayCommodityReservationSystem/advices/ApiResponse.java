@@ -1,7 +1,6 @@
-package com.pedalup.hackathon.pedalupApp.advices;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.advices;
 
 import lombok.Data;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.time.LocalDateTime;
 

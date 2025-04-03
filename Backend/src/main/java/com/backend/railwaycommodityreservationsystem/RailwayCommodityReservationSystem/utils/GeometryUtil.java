@@ -1,6 +1,6 @@
-package com.pedalup.hackathon.pedalupApp.utils;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.utils;
 
-import com.pedalup.hackathon.pedalupApp.dto.PointDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.PointDto;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;

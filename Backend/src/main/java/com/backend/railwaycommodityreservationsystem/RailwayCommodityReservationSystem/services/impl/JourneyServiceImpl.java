@@ -8,8 +8,8 @@ import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservation
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.enums.JourneyStatus;
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.exceptions.ResourceNotFoundException;
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.repositories.JourneyRepository;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.RideRequestService;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.RideService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.JourneyRequestService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.JourneyService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -21,10 +21,10 @@ import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
-public class RideServiceImpl implements RideService {
+public class JourneyServiceImpl implements JourneyService {
 
     private final JourneyRepository journeyRepository;
-    private final RideRequestService rideRequestService;
+    private final JourneyRequestService journeyRequestService;
     private final ModelMapper modelMapper;
 
     @Override
@@ -45,7 +45,7 @@ public class RideServiceImpl implements RideService {
 //        ride.setOtp(generateRandomOTP());
 //        ride.setId(generateRandomId());
 
-        rideRequestService.update(journeyRequest);
+        journeyRequestService.update(journeyRequest);
         return journeyRepository.save(journey);
     }
 

@@ -1,7 +1,7 @@
-package com.pedalup.hackathon.pedalupApp.configs;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.configs;
 
-import com.pedalup.hackathon.pedalupApp.dto.PointDto;
-import com.pedalup.hackathon.pedalupApp.utils.GeometryUtil;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.PointDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.utils.GeometryUtil;
 import org.locationtech.jts.geom.Point;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GoodsDto {
+public class TrainDto {
 
     private Long id;
     private Double rating;

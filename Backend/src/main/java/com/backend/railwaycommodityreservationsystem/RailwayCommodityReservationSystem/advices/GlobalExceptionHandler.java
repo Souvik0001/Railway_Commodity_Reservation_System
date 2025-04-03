@@ -1,14 +1,13 @@
-package com.pedalup.hackathon.pedalupApp.advices;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.advices;
 
-import com.pedalup.hackathon.pedalupApp.exceptions.ResourceNotFoundException;
-import com.pedalup.hackathon.pedalupApp.exceptions.RuntimeConflictException;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.exceptions.ResourceNotFoundException;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.exceptions.RuntimeConflictException;
 import io.jsonwebtoken.JwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

@@ -1,7 +1,7 @@
-package com.pedalup.hackathon.pedalupApp.services;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services;
 
-import com.pedalup.hackathon.pedalupApp.dto.SignupDto;
-import com.pedalup.hackathon.pedalupApp.dto.UserDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.SignupDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.UserDto;
 
 public interface AuthService {
 

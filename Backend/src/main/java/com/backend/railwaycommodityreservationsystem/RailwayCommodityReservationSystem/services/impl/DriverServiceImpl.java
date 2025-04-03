@@ -11,11 +11,11 @@ import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservation
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.exceptions.RuntimeConflictException;
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.repositories.TrainRepository;
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.repositories.JourneyRepository;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.repositories.RideRequestRepository;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.repositories.RiderRepository;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.CycleService;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.RideService;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.RiderService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.repositories.JourneyRequestRepository;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.repositories.DriverRepository;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.TrainService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.JourneyService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.DriverService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -30,16 +30,16 @@ import java.time.LocalDateTime;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class RiderServiceImpl implements RiderService {
+public class DriverServiceImpl implements DriverService {
 
     private final ModelMapper modelMapper;
 //    private final RideStrategyManager rideStrategyManager;
-    private final RideRequestRepository rideRequestRepository;
+    private final JourneyRequestRepository journeyRequestRepository;
     private final TrainRepository trainRepository;
-    private final RiderRepository riderRepository;
+    private final DriverRepository driverRepository;
     private final JourneyRepository journeyRepository;
-    private final RideService rideService;
-    private final CycleService cycleService;
+    private final JourneyService journeyService;
+    private final TrainService trainService;
 
     @Override
     @Transactional
@@ -53,7 +53,7 @@ public class RiderServiceImpl implements RiderService {
 //        Double fare = rideRequestDto.getFare();
 //        rideRequest.setFare(fare);
 
-        JourneyRequest savedJourneyRequest = rideRequestRepository.save(journeyRequest);
+        JourneyRequest savedJourneyRequest = journeyRequestRepository.save(journeyRequest);
 
         Train train = trainRepository.findByCycleId(cycleId).orElse(null);
 
@@ -69,11 +69,11 @@ public class RiderServiceImpl implements RiderService {
         train.setAvailable(Boolean.FALSE);
 
         journeyRequest.setJourneyRequestStatus(JourneyRequestStatus.CONFIRMED);
-        savedJourneyRequest = rideRequestRepository.save(journeyRequest);
+        savedJourneyRequest = journeyRequestRepository.save(journeyRequest);
 
         Train savedTrain = trainRepository.save(train);
 
-        Journey savedJourney = rideService.createNewRide(savedJourneyRequest, savedTrain);
+        Journey savedJourney = journeyService.createNewRide(savedJourneyRequest, savedTrain);
 
 //        List<Cycle> drivers = rideStrategyManager
 //                .driverMatchingStrategy(rider.getRating()).findMatchingDriver(rideRequest);
@@ -86,7 +86,7 @@ public class RiderServiceImpl implements RiderService {
     @Override
     public JourneyDto endRide(Long rideId) {
         Driver driver = getCurrentRider();
-        Journey journey = rideService.getRideById(rideId);
+        Journey journey = journeyService.getRideById(rideId);
 
         if(!driver.equals(journey.getDriver())) {
             throw new RuntimeException(("Rider does not own this ride with id: "+rideId));
@@ -96,8 +96,8 @@ public class RiderServiceImpl implements RiderService {
             throw new RuntimeException("Ride cannot be cancelled, invalid status: "+ journey.getJourneyStatus());
         }
 
-        Journey savedJourney = rideService.updateRideStatus(journey, JourneyStatus.ENDED);
-        cycleService.updateCycleAvailability(journey.getTrain(), true);
+        Journey savedJourney = journeyService.updateRideStatus(journey, JourneyStatus.ENDED);
+        trainService.updateCycleAvailability(journey.getTrain(), true);
         journey.setEndedAt(LocalDateTime.now());
         savedJourney = journeyRepository.save(journey);
 
@@ -118,7 +118,7 @@ public class RiderServiceImpl implements RiderService {
     @Override
     public Page<JourneyDto> getAllMyRides(PageRequest pageRequest) {
         Driver currentDriver = getCurrentRider();
-        return rideService.getAllRidesOfRider(currentDriver, pageRequest).map(
+        return journeyService.getAllRidesOfRider(currentDriver, pageRequest).map(
                 ride -> modelMapper.map(ride, JourneyDto.class)
         );
     }
@@ -130,14 +130,14 @@ public class RiderServiceImpl implements RiderService {
                 .user(user)
                 .rating(0.0)
                 .build();
-        return riderRepository.save(driver);
+        return driverRepository.save(driver);
     }
 
     @Override
     public Driver getCurrentRider() {
       User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        return riderRepository.findByUser(user).orElseThrow(() -> new ResourceNotFoundException(
+        return driverRepository.findByUser(user).orElseThrow(() -> new ResourceNotFoundException(
                 "Rider not associated with user with id: "+user.getId()
         ));
     }

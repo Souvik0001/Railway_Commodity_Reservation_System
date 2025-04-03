@@ -1,6 +1,6 @@
-package com.pedalup.hackathon.pedalupApp.entities;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities;
 
-import com.pedalup.hackathon.pedalupApp.entities.enums.Role;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,9 +1,8 @@
-package com.pedalup.hackathon.pedalupApp.advices;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.advices;
 
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 

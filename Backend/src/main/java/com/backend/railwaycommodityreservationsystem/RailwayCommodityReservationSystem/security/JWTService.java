@@ -1,6 +1,6 @@
-package com.pedalup.hackathon.pedalupApp.security;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.security;
 
-import com.pedalup.hackathon.pedalupApp.entities.User;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;

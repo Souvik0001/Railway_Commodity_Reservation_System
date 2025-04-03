@@ -1,4 +1,4 @@
-package com.pedalup.hackathon.pedalupApp.exceptions;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException() {

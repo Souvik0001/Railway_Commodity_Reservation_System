@@ -9,7 +9,7 @@ import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservation
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
-public interface RiderService {
+public interface DriverService {
 
     JourneyDto requestRide(TransportRequestDto transportRequestDto, String cycleId);
 

@@ -1,4 +1,4 @@
-package com.pedalup.hackathon.pedalupApp.configs;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

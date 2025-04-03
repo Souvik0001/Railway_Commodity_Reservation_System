@@ -1,10 +1,10 @@
 package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.controllers;
 
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.CycleDto;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.RideDto;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.RideRequestDto;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.CycleService;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.RiderService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.TrainDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.JourneyDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.TransportRequestDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.TrainService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.DriverService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.*;
 //@CrossOrigin(origins = "http://localhost:8081", allowCredentials = "true") // Allow only from this origin
 @RequestMapping("/riders")
 @RequiredArgsConstructor
-public class RiderController {
+public class TrainController {
 
-    private final RiderService riderService;
-    private final CycleService cycleService;
+    private final DriverService driverService;
+    private final TrainService trainService;
 
     @PostMapping("/requestRide/{cycleId}")
-    public ResponseEntity<RideDto> requestRide(@RequestBody RideRequestDto rideRequestDto, @PathVariable String cycleId) {
-        return ResponseEntity.ok(riderService.requestRide(rideRequestDto,cycleId));
+    public ResponseEntity<JourneyDto> requestRide(@RequestBody TransportRequestDto transportRequestDto, @PathVariable String cycleId) {
+        return ResponseEntity.ok(driverService.requestRide(transportRequestDto,cycleId));
     }
 
 //    @PostMapping("/acceptRide/{rideRequestId}")
@@ -30,12 +30,12 @@ public class RiderController {
 //    }
 
     @PostMapping("/endRide/{rideId}")
-    public ResponseEntity<RideDto> requestRide(@PathVariable Long rideId) {
-        return ResponseEntity.ok(riderService.endRide(rideId));
+    public ResponseEntity<JourneyDto> requestRide(@PathVariable Long rideId) {
+        return ResponseEntity.ok(driverService.endRide(rideId));
     }
 
     @PostMapping("/cycleLocation/{cycleId}")
-    public ResponseEntity<CycleDto> updateLocation(@RequestBody CycleDto cycleDto, @PathVariable String cycleId) {
-        return ResponseEntity.ok(cycleService.updateLocation(cycleDto,cycleId));
+    public ResponseEntity<TrainDto> updateLocation(@RequestBody TrainDto cycleDto, @PathVariable String cycleId) {
+        return ResponseEntity.ok(trainService.updateLocation(cycleDto,cycleId));
     }
 }

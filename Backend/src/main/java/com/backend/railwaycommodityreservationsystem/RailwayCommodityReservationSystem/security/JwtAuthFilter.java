@@ -1,8 +1,9 @@
-package com.pedalup.hackathon.pedalupApp.security;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.security;
 
-import com.pedalup.hackathon.pedalupApp.entities.User;
-import com.pedalup.hackathon.pedalupApp.services.UserService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.User;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.UserService;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
-import jakarta.servlet.ServletException;
 
 @Configuration
 @RequiredArgsConstructor

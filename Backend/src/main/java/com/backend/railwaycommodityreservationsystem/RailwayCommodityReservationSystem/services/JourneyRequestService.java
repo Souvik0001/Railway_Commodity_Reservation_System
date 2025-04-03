@@ -2,7 +2,7 @@ package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservatio
 
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.JourneyRequest;
 
-public interface RideRequestService {
+public interface JourneyRequestService {
 
     JourneyRequest findRideRequestById(Long rideRequestId);
 

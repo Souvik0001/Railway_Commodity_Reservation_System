@@ -1,4 +1,4 @@
-package com.pedalup.hackathon.pedalupApp.dto;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

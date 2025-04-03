@@ -1,5 +1,5 @@
 package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.enums;
 
-public enum RideRequestStatus {
+public enum JourneyRequestStatus {
     PENDING, CANCELLED, CONFIRMED
 }

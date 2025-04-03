@@ -3,7 +3,7 @@ package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservatio
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.TrainDto;
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.Train;
 
-public interface CycleService {
+public interface TrainService {
 
     Train getCurrentCycle();
 

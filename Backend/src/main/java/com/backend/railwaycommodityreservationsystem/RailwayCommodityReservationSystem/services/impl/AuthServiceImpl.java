@@ -1,15 +1,15 @@
-package com.pedalup.hackathon.pedalupApp.services.impl;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.impl;
 
-import com.pedalup.hackathon.pedalupApp.dto.SignupDto;
-import com.pedalup.hackathon.pedalupApp.dto.UserDto;
-import com.pedalup.hackathon.pedalupApp.entities.User;
-import com.pedalup.hackathon.pedalupApp.entities.enums.Role;
-import com.pedalup.hackathon.pedalupApp.exceptions.ResourceNotFoundException;
-import com.pedalup.hackathon.pedalupApp.exceptions.RuntimeConflictException;
-import com.pedalup.hackathon.pedalupApp.repositories.UserRepository;
-import com.pedalup.hackathon.pedalupApp.security.JWTService;
-import com.pedalup.hackathon.pedalupApp.services.AuthService;
-import com.pedalup.hackathon.pedalupApp.services.RiderService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.SignupDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.UserDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.User;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.enums.Role;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.exceptions.ResourceNotFoundException;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.exceptions.RuntimeConflictException;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.repositories.UserRepository;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.security.JWTService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.AuthService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.DriverService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,7 +27,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
-    private final RiderService riderService;
+    private final DriverService driverService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JWTService jwtService;
@@ -60,7 +60,7 @@ public class AuthServiceImpl implements AuthService {
         User savedUser = userRepository.save(mappedUser);
 
 //        create user related entities
-        riderService.createNewRider(savedUser);
+        driverService.createNewRider(savedUser);
 //        walletService.createNewWallet(savedUser);
 
         return modelMapper.map(savedUser, UserDto.class);

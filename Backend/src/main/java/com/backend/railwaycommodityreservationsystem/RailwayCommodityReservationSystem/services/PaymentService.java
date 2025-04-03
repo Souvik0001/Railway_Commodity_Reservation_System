@@ -1,4 +1,4 @@
-package com.pedalup.hackathon.pedalupApp.services;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services;
 
 public interface PaymentService {
 }

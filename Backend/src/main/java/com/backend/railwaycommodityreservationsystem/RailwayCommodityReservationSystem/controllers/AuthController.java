@@ -1,19 +1,21 @@
-package com.pedalup.hackathon.pedalupApp.controllers;
+package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.controllers;
 
-import com.pedalup.hackathon.pedalupApp.dto.LoginRequestDto;
-import com.pedalup.hackathon.pedalupApp.dto.LoginResponseDto;
-import com.pedalup.hackathon.pedalupApp.dto.SignupDto;
-import com.pedalup.hackathon.pedalupApp.dto.UserDto;
-import com.pedalup.hackathon.pedalupApp.services.AuthService;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.LoginRequestDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.LoginResponseDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.SignupDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.UserDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.AuthService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AuthenticationServiceException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 

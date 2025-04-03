@@ -8,7 +8,7 @@ import org.locationtech.jts.geom.Point;
 @Entity
 @Getter
 @Setter
-public class Cycle {
+public class Train {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

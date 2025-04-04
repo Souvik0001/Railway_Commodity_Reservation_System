@@ -2,7 +2,7 @@ package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservatio
 
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.TrainDto;
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.JourneyDto;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.TransportRequestDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.JourneyRequestDto;
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.DriverDto;
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.*;
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.entities.enums.JourneyRequestStatus;
@@ -43,9 +43,9 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     @Transactional
-    public JourneyDto requestJourney(TransportRequestDto transportRequestDto, String trainId) {
+    public JourneyDto requestJourney(JourneyRequestDto journeyRequestDto, String trainId) {
         Driver driver = getCurrentDriver();
-        JourneyRequest journeyRequest = modelMapper.map(transportRequestDto, JourneyRequest.class);
+        JourneyRequest journeyRequest = modelMapper.map(journeyRequestDto, JourneyRequest.class);
         journeyRequest.setJourneyRequestStatus(JourneyRequestStatus.PENDING);
         journeyRequest.setDriver(driver);
 

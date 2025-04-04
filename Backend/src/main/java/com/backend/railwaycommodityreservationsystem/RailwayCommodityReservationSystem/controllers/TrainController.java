@@ -2,7 +2,7 @@ package com.backend.railwaycommodityreservationsystem.RailwayCommodityReservatio
 
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.TrainDto;
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.JourneyDto;
-import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.TransportRequestDto;
+import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.dto.JourneyRequestDto;
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.TrainService;
 import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservationSystem.services.DriverService;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +20,8 @@ public class TrainController {
     private final TrainService trainService;
 
     @PostMapping("/requestJourney/{trainId}")
-    public ResponseEntity<JourneyDto> requestRide(@RequestBody TransportRequestDto transportRequestDto, @PathVariable String trainId) {
-        return ResponseEntity.ok(driverService.requestJourney(transportRequestDto,trainId));
+    public ResponseEntity<JourneyDto> requestRide(@RequestBody JourneyRequestDto journeyRequestDto, @PathVariable String trainId) {
+        return ResponseEntity.ok(driverService.requestJourney(journeyRequestDto,trainId));
     }
 
 //    @PostMapping("/acceptRide/{rideRequestId}")

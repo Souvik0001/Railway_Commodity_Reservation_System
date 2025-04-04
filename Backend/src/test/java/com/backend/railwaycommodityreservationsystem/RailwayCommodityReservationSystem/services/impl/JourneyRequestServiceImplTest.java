@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@MockitoSettings(strictness = Strictness.LENIENT)  // ✅ Disable strict stubbing
+@MockitoSettings(strictness = Strictness.LENIENT)
 class JourneyRequestServiceImplTest {
 
     @Mock
@@ -37,7 +37,7 @@ class JourneyRequestServiceImplTest {
 
     @Test
     void testFindJourneyRequestById_Found() {
-        // ✅ Mock repository to return a valid JourneyRequest
+
         when(journeyRequestRepository.findById(1L)).thenReturn(Optional.of(journeyRequest));
 
         JourneyRequest foundRequest = journeyRequestService.findJourneyRequestById(1L);
@@ -49,7 +49,7 @@ class JourneyRequestServiceImplTest {
 
     @Test
     void testFindJourneyRequestById_NotFound() {
-        // ✅ Mock repository to return empty (not found)
+
         when(journeyRequestRepository.findById(1L)).thenReturn(Optional.empty());
 
         Exception exception = assertThrows(ResourceNotFoundException.class, () ->
@@ -61,10 +61,10 @@ class JourneyRequestServiceImplTest {
 
     @Test
     void testUpdate_Success() {
-        // ✅ Mock repository to return the JourneyRequest
+
         when(journeyRequestRepository.findById(1L)).thenReturn(Optional.of(journeyRequest));
 
-        // ✅ Mock the save operation
+
         when(journeyRequestRepository.save(journeyRequest)).thenReturn(journeyRequest);
 
         assertDoesNotThrow(() -> journeyRequestService.update(journeyRequest));
@@ -75,7 +75,7 @@ class JourneyRequestServiceImplTest {
 
     @Test
     void testUpdate_NotFound() {
-        // ✅ Mock repository to return empty (not found)
+
         when(journeyRequestRepository.findById(1L)).thenReturn(Optional.empty());
 
         Exception exception = assertThrows(ResourceNotFoundException.class, () ->
@@ -83,6 +83,6 @@ class JourneyRequestServiceImplTest {
 
         assertEquals("RideRequest not found with id: 1", exception.getMessage());
         verify(journeyRequestRepository, times(1)).findById(1L);
-        verify(journeyRequestRepository, never()).save(any(JourneyRequest.class));  // ✅ Ensure `save()` is never called
+        verify(journeyRequestRepository, never()).save(any(JourneyRequest.class));
     }
 }

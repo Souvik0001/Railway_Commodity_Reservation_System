@@ -11,17 +11,17 @@ import org.springframework.data.domain.PageRequest;
 
 public interface DriverService {
 
-    JourneyDto requestRide(TransportRequestDto transportRequestDto, String cycleId);
+    JourneyDto requestJourney(TransportRequestDto transportRequestDto, String trainId);
 
-    JourneyDto endRide(Long rideId);
+    JourneyDto endJourney(Long journeyId);
 
-    TrainDto rateCycle(Long rideId, Integer rating);
+    TrainDto rateTrain(Long journeyId, Integer rating);
 
     DriverDto getMyProfile();
 
-    Page<JourneyDto> getAllMyRides(PageRequest pageRequest);
+    Page<JourneyDto> getAllMyJourneys(PageRequest pageRequest);
 
-    Driver createNewRider(User user);
+    Driver createNewDriver(User user);
 
-    Driver getCurrentRider();
+    Driver getCurrentDriver();
 }

@@ -23,24 +23,24 @@ public class TrainServiceImpl implements TrainService {
 
 
     @Override
-    public Train getCurrentCycle() {
+    public Train getCurrentTrain() {
         return trainRepository.findById(2L).orElseThrow(() -> new ResourceNotFoundException("Cycle not found with " +
                 "id "+2));
     }
 
     @Override
-    public Train updateCycleAvailability(Train train, boolean available) {
+    public Train updateTrainAvailability(Train train, boolean available) {
         train.setAvailable(available);
         return trainRepository.save(train);
     }
 
     @Override
-    public TrainDto updateLocation(TrainDto cycleDto, String cycleId){
-        Train train = trainRepository.findByCycleId(cycleId).orElse(null);
+    public TrainDto updateLocation(TrainDto trainDto, String trainId){
+        Train train = trainRepository.findByTrainId(trainId).orElse(null);
         if(train == null)
-            throw new RuntimeConflictException("Cannot SetUp Ride, Cycle is null not available with cycle Id: "+cycleId);
+            throw new RuntimeConflictException("Cannot SetUp Ride, Cycle is null not available with cycle Id: "+trainId);
 //        cycle.setCurrentLocation(modelMapper.map(pointDto, Cycle.class));
-        Train updatedTrain = modelMapper.map(cycleDto, Train.class);
+        Train updatedTrain = modelMapper.map(trainDto, Train.class);
 
         train.setCurrentLocation(updatedTrain.getCurrentLocation());
 

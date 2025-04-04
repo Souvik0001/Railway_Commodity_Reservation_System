@@ -5,9 +5,9 @@ import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservation
 
 public interface TrainService {
 
-    Train getCurrentCycle();
+    Train getCurrentTrain();
 
-    Train updateCycleAvailability(Train train, boolean available);
+    Train updateTrainAvailability(Train train, boolean available);
 
-    TrainDto updateLocation(TrainDto cycleDto, String cycleId);
+    TrainDto updateLocation(TrainDto trainDto, String trainId);
 }

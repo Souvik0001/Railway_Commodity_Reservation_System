@@ -10,13 +10,13 @@ import org.springframework.data.domain.PageRequest;
 
 public interface JourneyService {
 
-    Journey getRideById(Long rideId);
+    Journey getJourneyById(Long rideId);
 
-    Journey createNewRide(JourneyRequest journeyRequest, Train train);
+    Journey createNewJourney(JourneyRequest journeyRequest, Train train);
 
-    Journey updateRideStatus(Journey journey, JourneyStatus journeyStatus);
+    Journey updateJourneyStatus(Journey journey, JourneyStatus journeyStatus);
 
-    Page<Journey> getAllRidesOfRider(Driver driver, PageRequest pageRequest);
+    Page<Journey> getAllJourneysOfDriver(Driver driver, PageRequest pageRequest);
 
-    Page<Journey> getAllRidesOfDriver(Train train, PageRequest pageRequest);
+    Page<Journey> getAllJourneysOfDriver(Train train, PageRequest pageRequest);
 }

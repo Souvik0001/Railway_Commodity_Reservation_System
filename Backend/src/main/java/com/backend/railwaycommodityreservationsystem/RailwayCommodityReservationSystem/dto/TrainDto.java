@@ -12,6 +12,6 @@ public class TrainDto {
     private Long id;
     private Double rating;
     private Boolean available;
-    private String cycleId;
+    private String trainId;
     private PointDto currentLocation;
 }

@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
-    Optional<Payment> findByRide(Journey journey);
+    Optional<Payment> findByJourney(Journey journey);
 }

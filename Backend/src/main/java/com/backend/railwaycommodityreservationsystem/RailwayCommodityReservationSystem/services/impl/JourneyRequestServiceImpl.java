@@ -14,9 +14,9 @@ public class JourneyRequestServiceImpl implements JourneyRequestService {
     private final JourneyRequestRepository journeyRequestRepository;
 
     @Override
-    public JourneyRequest findRideRequestById(Long rideRequestId) {
-        return journeyRequestRepository.findById(rideRequestId)
-                .orElseThrow(() -> new ResourceNotFoundException("RideRequest not found with id: "+rideRequestId));
+    public JourneyRequest findJourneyRequestById(Long journeyRequestId) {
+        return journeyRequestRepository.findById(journeyRequestId)
+                .orElseThrow(() -> new ResourceNotFoundException("RideRequest not found with id: "+journeyRequestId));
     }
 
     @Override

@@ -21,7 +21,7 @@ public class TransportRequestDto {
 
     private LocalDateTime requestedTime;
 
-    private DriverDto rider;
+    private DriverDto driver;
     private Double fare;
 
     private JourneyRequestStatus journeyRequestStatus;

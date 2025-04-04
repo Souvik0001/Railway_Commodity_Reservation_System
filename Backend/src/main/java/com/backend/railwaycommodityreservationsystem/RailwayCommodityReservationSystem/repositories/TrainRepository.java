@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface TrainRepository extends JpaRepository<Train, Long> {
 //    Optional<Cycle> findByCycleId(String cycleId);
 
-    @Query("SELECT c FROM Cycle c WHERE c.cycleId = :cycleId")
-    Optional<Train> findByCycleId(@Param("cycleId") String cycleId);
+    @Query("SELECT c FROM Train c WHERE c.trainId = :trainId")
+    Optional<Train> findByTrainId(@Param("trainId") String trainId);
 }

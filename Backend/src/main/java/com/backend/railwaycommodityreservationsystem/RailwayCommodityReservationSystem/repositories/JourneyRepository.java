@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JourneyRepository extends JpaRepository<Journey, Long> {
-    Page<Journey> findByRider(Driver driver, Pageable pageRequest);
+    Page<Journey> findByDriver(Driver driver, Pageable pageRequest);
 
-    Page<Journey> findByCycle(Train train, Pageable pageRequest);
+    Page<Journey> findByTrain(Train train, Pageable pageRequest);
 }

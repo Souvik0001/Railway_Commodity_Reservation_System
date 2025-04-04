@@ -18,7 +18,7 @@ public class Train {
 
     private Boolean available;
 
-    private String cycleId;
+    private String trainId;
 
     @Column(columnDefinition = "Geometry(Point, 4326)")
     private Point currentLocation;

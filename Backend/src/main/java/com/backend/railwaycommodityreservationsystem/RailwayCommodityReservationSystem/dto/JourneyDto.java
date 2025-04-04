@@ -18,8 +18,8 @@ public class JourneyDto {
 //    private PointDto dropOffLocation;
 
     private LocalDateTime createdTime;
-    private DriverDto rider;
-    private TrainDto cycle;
+    private DriverDto driver;
+    private TrainDto train;
     private PaymentMethod paymentMethod;
 
     private JourneyStatus journeyStatus;

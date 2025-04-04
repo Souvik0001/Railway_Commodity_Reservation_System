@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 //@CrossOrigin(origins = "*", allowedHeaders = "*")
 //@CrossOrigin(origins = "http://localhost:8081", allowCredentials = "true") // Allow only from this origin
-@RequestMapping("/riders")
+@RequestMapping("/drivers")
 @RequiredArgsConstructor
 public class TrainController {
 
     private final DriverService driverService;
     private final TrainService trainService;
 
-    @PostMapping("/requestRide/{cycleId}")
-    public ResponseEntity<JourneyDto> requestRide(@RequestBody TransportRequestDto transportRequestDto, @PathVariable String cycleId) {
-        return ResponseEntity.ok(driverService.requestRide(transportRequestDto,cycleId));
+    @PostMapping("/requestJourney/{trainId}")
+    public ResponseEntity<JourneyDto> requestRide(@RequestBody TransportRequestDto transportRequestDto, @PathVariable String trainId) {
+        return ResponseEntity.ok(driverService.requestJourney(transportRequestDto,trainId));
     }
 
 //    @PostMapping("/acceptRide/{rideRequestId}")
@@ -29,13 +29,13 @@ public class TrainController {
 //        return ResponseEntity.ok(driverService.acceptRide(rideRequestId));
 //    }
 
-    @PostMapping("/endRide/{rideId}")
-    public ResponseEntity<JourneyDto> requestRide(@PathVariable Long rideId) {
-        return ResponseEntity.ok(driverService.endRide(rideId));
+    @PostMapping("/endRide/{journeyId}")
+    public ResponseEntity<JourneyDto> requestRide(@PathVariable Long journeyId) {
+        return ResponseEntity.ok(driverService.endJourney(journeyId));
     }
 
-    @PostMapping("/cycleLocation/{cycleId}")
-    public ResponseEntity<TrainDto> updateLocation(@RequestBody TrainDto cycleDto, @PathVariable String cycleId) {
-        return ResponseEntity.ok(trainService.updateLocation(cycleDto,cycleId));
+    @PostMapping("/trainLocation/{trainId}")
+    public ResponseEntity<TrainDto> updateLocation(@RequestBody TrainDto trainDto, @PathVariable String trainId) {
+        return ResponseEntity.ok(trainService.updateLocation(trainDto,trainId));
     }
 }

@@ -28,14 +28,14 @@ public class JourneyServiceImpl implements JourneyService {
     private final ModelMapper modelMapper;
 
     @Override
-    public Journey getRideById(Long rideId) {
-        return journeyRepository.findById(rideId)
-                .orElseThrow(() -> new ResourceNotFoundException("Ride not found with id: "+rideId));
+    public Journey getJourneyById(Long journeyId) {
+        return journeyRepository.findById(journeyId)
+                .orElseThrow(() -> new ResourceNotFoundException("Ride not found with id: "+journeyId));
     }
 
 
     @Override
-    public Journey createNewRide(JourneyRequest journeyRequest, Train train) {
+    public Journey createNewJourney(JourneyRequest journeyRequest, Train train) {
         journeyRequest.setJourneyRequestStatus(JourneyRequestStatus.CONFIRMED);
 
         Journey journey = modelMapper.map(journeyRequest, Journey.class);
@@ -50,19 +50,19 @@ public class JourneyServiceImpl implements JourneyService {
     }
 
     @Override
-    public Journey updateRideStatus(Journey journey, JourneyStatus journeyStatus) {
+    public Journey updateJourneyStatus(Journey journey, JourneyStatus journeyStatus) {
         journey.setJourneyStatus(journeyStatus);
         return journeyRepository.save(journey);
     }
 
     @Override
-    public Page<Journey> getAllRidesOfRider(Driver driver, PageRequest pageRequest) {
-        return journeyRepository.findByRider(driver, pageRequest);
+    public Page<Journey> getAllJourneysOfDriver(Driver driver, PageRequest pageRequest) {
+        return journeyRepository.findByDriver(driver, pageRequest);
     }
 
     @Override
-    public Page<Journey> getAllRidesOfDriver(Train train, PageRequest pageRequest) {
-        return journeyRepository.findByCycle(train, pageRequest);
+    public Page<Journey> getAllJourneysOfDriver(Train train, PageRequest pageRequest) {
+        return journeyRepository.findByTrain(train, pageRequest);
     }
 
     private String generateRandomOTP() {

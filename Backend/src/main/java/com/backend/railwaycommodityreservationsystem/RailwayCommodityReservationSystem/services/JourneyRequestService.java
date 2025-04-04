@@ -4,7 +4,7 @@ import com.backend.railwaycommodityreservationsystem.RailwayCommodityReservation
 
 public interface JourneyRequestService {
 
-    JourneyRequest findRideRequestById(Long rideRequestId);
+    JourneyRequest findJourneyRequestById(Long journeyRequestId);
 
     void update(JourneyRequest journeyRequest);
 }

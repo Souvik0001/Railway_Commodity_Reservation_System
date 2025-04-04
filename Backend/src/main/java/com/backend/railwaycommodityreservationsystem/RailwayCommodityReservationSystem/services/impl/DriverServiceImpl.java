@@ -43,8 +43,8 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     @Transactional
-    public JourneyDto requestRide(TransportRequestDto transportRequestDto, String cycleId) {
-        Driver driver = getCurrentRider();
+    public JourneyDto requestJourney(TransportRequestDto transportRequestDto, String trainId) {
+        Driver driver = getCurrentDriver();
         JourneyRequest journeyRequest = modelMapper.map(transportRequestDto, JourneyRequest.class);
         journeyRequest.setJourneyRequestStatus(JourneyRequestStatus.PENDING);
         journeyRequest.setDriver(driver);
@@ -55,15 +55,15 @@ public class DriverServiceImpl implements DriverService {
 
         JourneyRequest savedJourneyRequest = journeyRequestRepository.save(journeyRequest);
 
-        Train train = trainRepository.findByCycleId(cycleId).orElse(null);
+        Train train = trainRepository.findByTrainId(trainId).orElse(null);
 
         System.out.print(train);
 
         if(train == null)
-            throw new RuntimeConflictException("Cannot SetUp Ride, Cycle is null not available with cycle Id: "+cycleId);
+            throw new RuntimeConflictException("Cannot SetUp Ride, Cycle is null not available with cycle Id: "+trainId);
 
         if(train.getAvailable() == Boolean.FALSE){
-            throw new RuntimeConflictException("Cannot SetUp Ride, Cycle is not available with cycle Id: "+cycleId);
+            throw new RuntimeConflictException("Cannot SetUp Ride, Cycle is not available with cycle Id: "+trainId);
         }
 
         train.setAvailable(Boolean.FALSE);
@@ -73,7 +73,7 @@ public class DriverServiceImpl implements DriverService {
 
         Train savedTrain = trainRepository.save(train);
 
-        Journey savedJourney = journeyService.createNewRide(savedJourneyRequest, savedTrain);
+        Journey savedJourney = journeyService.createNewJourney(savedJourneyRequest, savedTrain);
 
 //        List<Cycle> drivers = rideStrategyManager
 //                .driverMatchingStrategy(rider.getRating()).findMatchingDriver(rideRequest);
@@ -84,20 +84,20 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public JourneyDto endRide(Long rideId) {
-        Driver driver = getCurrentRider();
-        Journey journey = journeyService.getRideById(rideId);
+    public JourneyDto endJourney(Long journeyId) {
+        Driver driver = getCurrentDriver();
+        Journey journey = journeyService.getJourneyById(journeyId);
 
         if(!driver.equals(journey.getDriver())) {
-            throw new RuntimeException(("Rider does not own this ride with id: "+rideId));
+            throw new RuntimeException(("Rider does not own this ride with id: "+journeyId));
         }
 
         if(!journey.getJourneyStatus().equals(JourneyStatus.CONFIRMED)) {
             throw new RuntimeException("Ride cannot be cancelled, invalid status: "+ journey.getJourneyStatus());
         }
 
-        Journey savedJourney = journeyService.updateRideStatus(journey, JourneyStatus.ENDED);
-        trainService.updateCycleAvailability(journey.getTrain(), true);
+        Journey savedJourney = journeyService.updateJourneyStatus(journey, JourneyStatus.ENDED);
+        trainService.updateTrainAvailability(journey.getTrain(), true);
         journey.setEndedAt(LocalDateTime.now());
         savedJourney = journeyRepository.save(journey);
 
@@ -105,26 +105,26 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public TrainDto rateCycle(Long rideId, Integer rating) {
+    public TrainDto rateTrain(Long journeyId, Integer rating) {
         return null;
     }
 
     @Override
     public DriverDto getMyProfile() {
-        Driver currentDriver = getCurrentRider();
+        Driver currentDriver = getCurrentDriver();
         return modelMapper.map(currentDriver, DriverDto.class);
     }
 
     @Override
-    public Page<JourneyDto> getAllMyRides(PageRequest pageRequest) {
-        Driver currentDriver = getCurrentRider();
-        return journeyService.getAllRidesOfRider(currentDriver, pageRequest).map(
-                ride -> modelMapper.map(ride, JourneyDto.class)
+    public Page<JourneyDto> getAllMyJourneys(PageRequest pageRequest) {
+        Driver currentDriver = getCurrentDriver();
+        return journeyService.getAllJourneysOfDriver(currentDriver, pageRequest).map(
+                journey -> modelMapper.map(journey, JourneyDto.class)
         );
     }
 
     @Override
-    public Driver createNewRider(User user) {
+    public Driver createNewDriver(User user) {
         Driver driver = Driver
                 .builder()
                 .user(user)
@@ -134,7 +134,7 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public Driver getCurrentRider() {
+    public Driver getCurrentDriver() {
       User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         return driverRepository.findByUser(user).orElseThrow(() -> new ResourceNotFoundException(

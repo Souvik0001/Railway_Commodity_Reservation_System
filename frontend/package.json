@@ -1,0 +1,31 @@
+{
+  "name": "railway-commodity-reservation",
+  "version": "1.0.0",
+  "description": "Railway Commodity Reservation System",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "dependencies": {
+    "jquery": "3.0.0",
+    "bootstrap": "5.3.5",
+    "font-awesome": "4.0.3",
+    "malihu-custom-scrollbar-plugin": "3.1.5",
+    "@fancyapps/ui": "5.0.0"
+  },
+  "devDependencies": {
+    "lite-server": "2.6.1"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raunakmallick18/railway-commodity-reservation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/raunakmallick18/railway-commodity-reservation/issues"
+  },
+  "homepage": "https://github.com/raunakmallick18/railway-commodity-reservation#readme"
+}
